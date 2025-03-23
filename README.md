@@ -24,7 +24,7 @@ Measuring GPU timing of a Volumetric Lighting pass using VRS:
 | Uniform 1x1   | ~6.4 ms               |
 | Uniform 2x2   | ~1.6 ms (75% faster)  |  
 | Uniform 4x4   | ~0.5 ms (92% faster)  | 
-| Edge based    | ~3.8 ms (40% faster)  | 
+| Edge based    | ~4.1 ms (35% faster)  | 
 
 The Sentis Sobel filter is using a 256x256 input tensor, and is executing at around ~0.22ms:
 <p align="center">
