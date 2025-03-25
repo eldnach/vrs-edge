@@ -1,7 +1,8 @@
 # Edge-based Variable Rate Shading
 
-Variable Rate Shading (VRS), also known as Fragment Shading Rate, is a technique which allows to decouple the rasterization and pixel shading rate. VRS can be used to minimize the pixel shading overhead, and improve performance while perserving image quality:
+This repo is an unofficial extension to the Unity sample for Variable Rate Shading: https://github.com/Unity-Technologies/shading-rate-demo
 
+You can import this asset into the VRS sample project, and apply a shading rate reduction using edge detection.
 <p align="center">
   <img width="100%" src="https://github.com/eldnach/vrs-edge/blob/main/.github/images/vrs_edge.gif?raw=true" alt="vrs demo">
 </p>
@@ -10,12 +11,12 @@ This renderer feature uses the Sentis API to import and execute a Sobel Edge Det
 
 Setting a uniform (screen-wide) 2x2 shading rate results in visual artifacts when zoomed:
 <p align="center">
-  <img width="100%" src="https://github.com/eldnach/vrs-edge/blob/main/.github/images/2x2_vrs.png/?raw=true" alt="2x2 shading rate">
+  <img width="70%" src="https://github.com/eldnach/vrs-edge/blob/main/.github/images/2x2_vrs.png/?raw=true" alt="2x2 shading rate">
 </p>
 
 By applying edge detection to the shading rate, visual fidelity is greatly improved:
 <p align="center">
-  <img width="100%" src="https://github.com/eldnach/vrs-edge/blob/main/.github/images/edge_vrs.png?raw=true" alt="edge based shading rate">
+  <img width="70%" src="https://github.com/eldnach/vrs-edge/blob/main/.github/images/edge_vrs.png?raw=true" alt="edge based shading rate">
 </p>
 
 Measuring GPU timing of a Volumetric Lighting pass using VRS:
@@ -37,14 +38,14 @@ Import the files to your project's Asset folder. Navigate to your active render 
 
 By default, a VRS generation pass will inject at the `After Rendering Pre Passes` event. This allows the Sobel filter to access the URP depth buffer. You may want to modify the Injection Point property based on your project's `Depth Texture Mode` setting.
 
-<p align="center">
-  <img width="100%" src="https://github.com/eldnach/vrs-edge/blob/main/.github/images/renderer-feature.png?raw=true" alt="renderer feature">
+<p align="left">
+  <img width="70%" src="https://github.com/eldnach/vrs-edge/blob/main/.github/images/renderer-feature.png?raw=true" alt="renderer feature">
 </p>
 
 We can verify that VRS generation works as intended by opening `Window-> Analysis-> Render Graph Viewer`, and identifing the `Sentis Sobel` and `Shading Rate From Edge` passes:
 
-<p align="center">
-  <img width="100%" src="https://github.com/eldnach/vrs-edge/blob/main/.github/images/rgviewer.png?raw=true" alt="rendergrpah viewer">
+<p align="left">
+  <img width="70%" src="https://github.com/eldnach/vrs-edge/blob/main/.github/images/rgviewer.png?raw=true" alt="rendergrpah viewer">
 </p>
 
 The genereated shading rate image can now be applied to your project's render passes. Before doing so, first query for VRS support using `ShadingRateInfo.supportsPerImageTile`.
